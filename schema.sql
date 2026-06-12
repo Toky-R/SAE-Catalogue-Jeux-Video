@@ -38,4 +38,10 @@ CREATE TABLE Genre (
     nom      VARCHAR(100) NOT NULL
 );
 
-
+CREATE TABLE Jeu_Plateforme (
+    id_jeu        INT NOT NULL,
+    id_plateforme INT NOT NULL,
+    PRIMARY KEY (id_jeu, id_plateforme),
+    FOREIGN KEY (id_jeu)        REFERENCES Jeu(id_jeu)              ON DELETE CASCADE,
+    FOREIGN KEY (id_plateforme) REFERENCES Plateforme(id_plateforme) ON DELETE CASCADE
+);
