@@ -11,6 +11,6 @@ try {
         $pass
     );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
+    } catch (PDOException $e) {
     die("Erreur de connexion à la base : " . $e->getMessage());
 }
