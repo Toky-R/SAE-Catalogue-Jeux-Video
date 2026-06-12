@@ -56,3 +56,16 @@ CREATE TABLE Jeu_Genre (
     FOREIGN KEY (id_genre) REFERENCES Genre(id_genre) ON DELETE CASCADE
 );
 
+
+
+INSERT INTO studio (nom, adresse, pays) VALUES
+('Rockstar North',    '10 Albany Street, Edinburgh',       'Royaume-Uni'),
+('CD Projekt RED',    'ul. Jagiellonska 74, Varsovie',     'Pologne'),
+('FromSoftware',      '2-10-14 Higashi-Gotanda, Tokyo',    'Japon'),
+('Naughty Dog',       '3310 W Olympic Blvd, Santa Monica', 'Etats-Unis'),
+('Nintendo EPD',      '11-1 Kamitoba hokotate-cho, Kyoto', 'Japon'),
+('Larian Studios',    'Vrijdagmarkt 10, Gand',             'Belgique'),
+('Guerrilla Games',   'Postbus 151, Amsterdam',            'Pays-Bas'),
+('Insomniac Games',   '2255 N Ontario St, Burbank',        'Etats-Unis'),
+('Valve Corporation', '10400 NE 4th St, Bellevue',         'Etats-Unis'),
+('Mojang Studios',    'Sodermalm, Stockholm',              'Suede');
