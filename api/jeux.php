@@ -54,3 +54,11 @@ if ($methode === 'POST') {
     }
     echo json_encode(['success' => true, 'id_jeu' => $id]);
 }
+
+
+if ($methode === 'DELETE') {
+    $id = $_GET['id'];
+    $requete = $pdo->prepare("DELETE FROM jeu WHERE id_jeu = ?");
+    $requete->execute([$id]);
+    echo json_encode(['success' => true]);
+}
