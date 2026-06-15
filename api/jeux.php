@@ -22,3 +22,35 @@ if ($methode === 'GET') {
     $jeux = $resultat->fetchAll();
     echo json_encode($jeux);
 }
+
+
+if ($methode === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
+    $requete = $pdo->prepare("
+        INSERT INTO jeu (titre, date_sortie, description, prix, note_moyenne, id_dev)
+        VALUES (:titre, :date_sortie, :description, :prix, :note_moyenne, :id_dev)
+    ");
+
+    $requete->execute([
+        ':titre' => $data['titre'],
+        ':date_sortie' => $data['date_sortie'] ?? null,
+        ':description' => $data['description'] ?? null,
+        ':prix' => $data['prix'],
+        ':note_moyenne' => $data['note_moyenne'] ?? null,
+        ':id_dev' => $data['id_dev'],
+    ]);
+    $id = $pdo->lastInsertId();
+    if (!empty($data['genres'])) {
+        $ins = $pdo->prepare("INSERT INTO jeu_genre (id_jeu, id_genre) VALUES (?, ?)");
+        foreach ($data['genres'] as $id_genre) {
+            $ins->execute([$id, $id_genre]);
+        }
+    }
+    if (!empty($data['plateformes'])) {
+        $ins = $pdo->prepare("INSERT INTO jeu_plateforme (id_jeu, id_plateforme) VALUES (?, ?)");
+        foreach ($data['plateformes'] as $id_plateforme) {
+            $ins->execute([$id, $id_plateforme]);
+        }
+    }
+    echo json_encode(['success' => true, 'id_jeu' => $id]);
+}
