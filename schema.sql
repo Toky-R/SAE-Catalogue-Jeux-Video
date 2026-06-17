@@ -125,4 +125,30 @@ INSERT INTO jeu (titre, date_sortie, description, prix, note_moyenne, id_dev) VA
 ('Dark Souls III', '2016-04-12', 'Action-RPG exigeant dans un royaume en declin. Affrontez des ennemis redoutables dans un univers sombre.', 59.99, 9.0, 3),
 ('Cyberpunk 2077', '2020-12-10', 'RPG en monde ouvert dans la megalopole Night City. Incarnez V, mercenaire a la recherche d\'un implant qui menace votre existence.', 59.99, 8.5, 2);
 
+INSERT INTO jeu_plateforme (id_jeu, id_plateforme) VALUES
+(1,1),(1,2),(1,3),(1,4),(1,5),
+(2,1),(2,2),(2,3),(2,4),(2,5),
+(3,1),(3,2),(3,4),
+(4,2),(4,3),
+(5,6),
+(6,1),(6,2),
+(7,1),(7,2),(7,3),
+(8,2),
+(9,1),
+(10,1),(10,2),(10,4),(10,6),
+(11,1),(11,2),(11,3),(11,4),(11,5),
+(12,1),(12,2),(12,4);
 
+INSERT INTO jeu_genre (id_jeu, id_genre) VALUES
+(1,1),(1,3),(1,4),
+(2,2),(2,3),(2,4),
+(3,1),(3,2),(3,5),
+(4,1),(4,4),
+(5,1),(5,3),(5,4),
+(6,2),(6,4),(6,10),
+(7,1),(7,2),(7,3),
+(8,1),(8,4),
+(9,1),(9,6),
+(10,8),(10,9),
+(11,1),(11,2),(11,5),
+(12,1),(12,2),(12,3);
