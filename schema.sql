@@ -29,8 +29,8 @@ CREATE TABLE Jeu (
 
 CREATE TABLE Plateforme (
     id_plateforme INT AUTO_INCREMENT PRIMARY KEY,
-    nom           VARCHAR(100) NOT NULL,
-    fabricant     VARCHAR(100)
+    nom VARCHAR(100) NOT NULL,
+    fabricant VARCHAR(100)
 );
 
 CREATE TABLE Genre (
@@ -42,7 +42,7 @@ CREATE TABLE Jeu_Plateforme (
     id_jeu  INT NOT NULL,
     id_plateforme INT NOT NULL,
     PRIMARY KEY (id_jeu, id_plateforme),
-    FOREIGN KEY (id_jeu)        REFERENCES Jeu(id_jeu)          ON DELETE CASCADE,
+    FOREIGN KEY (id_jeu) REFERENCES Jeu(id_jeu) ON DELETE CASCADE,
     FOREIGN KEY (id_plateforme) REFERENCES Plateforme(id_plateforme) ON DELETE CASCADE
 );
 
@@ -59,13 +59,36 @@ CREATE TABLE Jeu_Genre (
 
 
 INSERT INTO studio (nom, adresse, pays) VALUES
-('Rockstar North',    '10 Albany Street, Edinburgh',       'Royaume-Uni'),
-('CD Projekt RED',    'ul. Jagiellonska 74, Varsovie',     'Pologne'),
-('FromSoftware',      '2-10-14 Higashi-Gotanda, Tokyo',    'Japon'),
-('Naughty Dog',       '3310 W Olympic Blvd, Santa Monica', 'Etats-Unis'),
-('Nintendo EPD',      '11-1 Kamitoba hokotate-cho, Kyoto', 'Japon'),
-('Larian Studios',    'Vrijdagmarkt 10, Gand',             'Belgique'),
-('Guerrilla Games',   'Postbus 151, Amsterdam',            'Pays-Bas'),
-('Insomniac Games',   '2255 N Ontario St, Burbank',        'Etats-Unis'),
-('Valve Corporation', '10400 NE 4th St, Bellevue',         'Etats-Unis'),
-('Mojang Studios',    'Sodermalm, Stockholm',              'Suede');
+('Rockstar North','10 Albany Street, Edinburgh','Royaume-Uni'),
+('CD Projekt RED','ul. Jagiellonska 74, Varsovie','Pologne'),
+('FromSoftware','2-10-14 Higashi-Gotanda, Tokyo','Japon'),
+('Naughty Dog','3310 W Olympic Blvd, Santa Monica', 'Etats-Unis'),
+('Nintendo EPD','11-1 Kamitoba hokotate-cho, Kyoto', 'Japon'),
+('Larian Studios','Vrijdagmarkt 10, Gand','Belgique'),
+('Guerrilla Games','Postbus 151, Amsterdam','Pays-Bas'),
+('Insomniac Games','2255 N Ontario St, Burbank','Etats-Unis'),
+('Valve Corporation', '10400 NE 4th St, Bellevue','Etats-Unis'),
+('Mojang Studios',    'Sodermalm, Stockholm','Suede');
+
+
+
+INSERT INTO developpeur (nom, site_web, id_studio) VALUES
+('Rockstar Games','https://www.rockstargames.com', 1),
+('CD Projekt RED',  'https://www.cdprojektred.com',  2),
+('FromSoftware','https://www.fromsoftware.jp',   3),
+('Naughty Dog','https://www.naughtydog.com',    4),
+('Nintendo','https://www.nintendo.com',      5),
+('Larian Studios', 'https://larian.com',            6),
+('Guerrilla Games', 'https://www.guerrilla-games.com', 7),
+('Insomniac Games', 'https://insomniac.games',       8),
+('Valve','https://www.valvesoftware.com', 9),
+('Mojang','https://www.minecraft.net',     10);
+
+
+INSERT INTO plateforme (nom, fabricant) VALUES
+('PC', 'Multiple'),
+('PlayStation 5',   'Sony'),
+('PlayStation 4', 'Sony'),
+('Xbox Series X', 'Microsoft'),
+('Xbox One', 'Microsoft'),
+('Nintendo Switch', 'Nintendo');
