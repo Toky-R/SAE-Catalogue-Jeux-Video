@@ -152,3 +152,17 @@ INSERT INTO jeu_genre (id_jeu, id_genre) VALUES
 (10,8),(10,9),
 (11,1),(11,2),(11,5),
 (12,1),(12,2),(12,3);
+
+
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg' WHERE id_jeu = 1;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg' WHERE id_jeu = 2;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg' WHERE id_jeu = 3;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/4/4f/TLOU_P2_cover_art.png' WHERE id_jeu = 4;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/2/22/The_Legend_of_Zelda_Tears_of_the_Kingdom_cover.jpg' WHERE id_jeu = 5;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/2/28/Baldur%27s_Gate_3_cover_art.jpg' WHERE id_jeu = 6;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/c/c2/Horizon_Zero_Dawn_cover_art.jpg' WHERE id_jeu = 7;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/9/93/Marvel%27s_Spider-Man_2_cover_art.jpg' WHERE id_jeu = 8;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/b/b2/Half-Life_Alyx_cover_art.jpg' WHERE id_jeu = 9;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png' WHERE id_jeu = 10;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/8/8d/Dark_Souls_3_Steam_Cover_Art.jpg' WHERE id_jeu = 11;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/9/9d/Cyberpunk_2077_box_art.jpg' WHERE id_jeu = 12;
