@@ -75,14 +75,14 @@ INSERT INTO studio (nom, adresse, pays) VALUES
 INSERT INTO developpeur (nom, site_web, id_studio) VALUES
 ('Rockstar Games','https://www.rockstargames.com', 1),
 ('CD Projekt RED',  'https://www.cdprojektred.com',  2),
-('FromSoftware','https://www.fromsoftware.jp',   3),
-('Naughty Dog','https://www.naughtydog.com',    4),
-('Nintendo','https://www.nintendo.com',      5),
-('Larian Studios', 'https://larian.com',            6),
+('FromSoftware','https://www.fromsoftware.jp', 3),
+('Naughty Dog','https://www.naughtydog.com', 4),
+('Nintendo','https://www.nintendo.com', 5),
+('Larian Studios', 'https://larian.com', 6),
 ('Guerrilla Games', 'https://www.guerrilla-games.com', 7),
-('Insomniac Games', 'https://insomniac.games',       8),
+('Insomniac Games', 'https://insomniac.games', 8),
 ('Valve','https://www.valvesoftware.com', 9),
-('Mojang','https://www.minecraft.net',     10);
+('Mojang','https://www.minecraft.net', 10);
 
 
 INSERT INTO plateforme (nom, fabricant) VALUES
@@ -92,3 +92,37 @@ INSERT INTO plateforme (nom, fabricant) VALUES
 ('Xbox Series X', 'Microsoft'),
 ('Xbox One', 'Microsoft'),
 ('Nintendo Switch', 'Nintendo');
+
+
+
+
+INSERT INTO genre (nom) VALUES
+('Action'),
+('RPG'),
+('Open World'),
+('Aventure'),
+('Souls-like'),
+('FPS'),
+('Plateforme'),
+('Survie'),
+('Simulation'),
+('Strategie');
+
+
+
+
+INSERT INTO jeu (titre, date_sortie, description, prix, note_moyenne, id_dev) VALUES
+('Red Dead Redemption 2', '2018-10-26', 'Western epique en monde ouvert situe en 1899. Incarnez Arthur Morgan, hors-la-loi dans un des derniers gangs du Far West.', 39.99, 9.7, 1),
+('The Witcher 3: Wild Hunt', '2015-05-19', 'RPG fantasy acclaime par la critique. Incarnez Geralt de Riv, un chasseur de monstres dans un monde ouvert immense.', 29.99, 9.3, 2),
+('Elden Ring', '2022-02-25', 'Action-RPG de FromSoftware cree avec George R.R. Martin. Explorez les Terres Intermediaires dans un monde ouvert hostile.', 59.99, 9.5, 3),
+('The Last of Us Part II', '2020-06-19', 'Jeu action-aventure post-apocalyptique. Ellie part en quete de vengeance dans un monde ravage par une infection fongique.', 69.99, 9.3, 4),
+('The Legend of Zelda: Tears of the Kingdom', '2023-05-12', 'Suite de Breath of the Wild. Link explore Hyrule et ses iles celestes pour retrouver Zelda disparue.', 59.99, 9.6, 5),
+('Baldur\'s Gate 3', '2023-08-03', 'RPG base sur Donjons et Dragons 5e edition. Survivez a une invasion de flagelleurs mentaux dans les Royaumes Oublies.', 59.99, 9.6, 6),
+('Horizon Zero Dawn', '2017-02-28', 'Action-RPG dans un monde post-apocalyptique peuple de machines-animaux. Incarnez Aloy, chasseuse redoutable.', 59.99, 8.8, 7),
+('Marvel\'s Spider-Man 2', '2023-10-20', 'Incarnez Peter Parker et Miles Morales dans une aventure epique a New York face a Venom et Kraven le Chasseur.', 69.99, 9.2, 8),
+('Half-Life: Alyx', '2020-03-23', 'Jeu de tir VR immersif dans l\'univers Half-Life. Alyx Vance combat les Combines pour liberer la Terre.', 59.99, 9.4, 9),
+('Minecraft', '2011-11-18', 'Jeu de survie et de construction par blocs. Explorez un monde infini et construisez tout ce que vous imaginez.', 26.95, 9.0, 10),
+('Dark Souls III', '2016-04-12', 'Action-RPG exigeant dans un royaume en declin. Affrontez des ennemis redoutables dans un univers sombre.', 59.99, 9.0, 3),
+('Cyberpunk 2077', '2020-12-10', 'RPG en monde ouvert dans la megalopole Night City. Incarnez V, mercenaire a la recherche d\'un implant qui menace votre existence.', 59.99, 8.5, 2);
+
+
