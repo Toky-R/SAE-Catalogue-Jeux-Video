@@ -72,6 +72,12 @@
   
     <label>Developpeur :</label>
     <select id="id_dev"></select>
+    
+    <label>Genres :</label>
+    <div id="zoneGenres"></div>
+    
+    <label>Plateformes :</label>
+    <div id="zonePlateformes"></div>
   
     <button type="submit">Ajouter le jeu</button>
   </form>
@@ -91,6 +97,40 @@
         select.innerHTML += `<option value="${dev.id_dev}">${dev.nom}</option>`;
       });
     });
+
+    // récupération de la liste des genres pour creer des cases a cocher
+    fetch('api/genres.php')
+      .then(function(reponse) {
+        return reponse.json();
+      })
+      .then(function(genres) {
+        const zone = document.getElementById('zoneGenres');
+        genres.forEach(function(genre) {
+          zone.innerHTML += `
+            <label>
+              <input type="checkbox" name="genre" value="${genre.id_genre}"/>
+              ${genre.nom}
+            </label>
+          `;
+        });
+      });
+    
+    // récupération de la liste des plateformes pour creer des cases a cocher
+    fetch('api/plateformes.php')
+      .then(function(reponse) {
+        return reponse.json();
+      })
+      .then(function(plateformes) {
+        const zone = document.getElementById('zonePlateformes');
+        plateformes.forEach(function(plateforme) {
+          zone.innerHTML += `
+            <label>
+              <input type="checkbox" name="plateforme" value="${plateforme.id_plateforme}"/>
+              ${plateforme.nom}
+            </label>
+          `;
+        });
+      });
 
     
     fetch('api/jeux.php')
@@ -126,7 +166,7 @@
     // On empeche le rechargement de la page
     evenement.preventDefault();
   
-    // On recupere les valeurs du formulaire
+    // récupération des valeurs du formulaire
     const nouveauJeu = {
       titre: document.getElementById('titre').value,
       prix: document.getElementById('prix').value,
@@ -134,8 +174,20 @@
       note_moyenne: document.getElementById('note_moyenne').value,
       description: document.getElementById('description').value,
       image_url: document.getElementById('image_url').value,
-      id_dev: document.getElementById('id_dev').value
+      id_dev: document.getElementById('id_dev').value,
+      genres: [],
+      plateformes: []
     };
+    
+    // récupération des cases de genr cochees
+    document.querySelectorAll('input[name="genre"]:checked').forEach(function(case_) {
+      nouveauJeu.genres.push(case_.value);
+    });
+    
+    // récupération des cases de plateforme cochees
+    document.querySelectorAll('input[name="plateforme"]:checked').forEach(function(case_) {
+      nouveauJeu.plateformes.push(case_.value);
+    });
   
     // On envoie le jeu a l'API en POST
     fetch('api/jeux.php', {
