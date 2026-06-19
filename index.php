@@ -47,7 +47,6 @@
       .then(function(jeux) {
         const grille = document.getElementById('grille');
         jeux.forEach(function(jeu) {
-          grille.innerHTML += `
             grille.innerHTML += `
             <div class="carte">
             <img src="${jeu.image_url}" alt="${jeu.titre}"/>
