@@ -5,7 +5,7 @@ $methode = $_SERVER['REQUEST_METHOD'];
 if ($methode === 'GET') {
     $requete = "
         SELECT j.id_jeu, j.titre, j.date_sortie, j.description,
-               j.prix, j.note_moyenne,
+               j.prix, j.note_moyenne, j.image_url,
                d.nom AS developpeur,
                GROUP_CONCAT(DISTINCT g.nom ORDER BY g.nom SEPARATOR ', ') AS genres,
                GROUP_CONCAT(DISTINCT p.nom ORDER BY p.nom SEPARATOR ', ') AS plateformes
