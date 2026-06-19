@@ -48,10 +48,12 @@
         const grille = document.getElementById('grille');
         jeux.forEach(function(jeu) {
           grille.innerHTML += `
+            grille.innerHTML += `
             <div class="carte">
-              <h2>${jeu.titre}</h2>
+            <img src="${jeu.image_url}" alt="${jeu.titre}"/>
+             <h2>${jeu.titre}</h2>
               <p><strong>Developpeur :</strong> ${jeu.developpeur}</p>
-              <p><strong>Genres :</strong> ${jeu.genres ?? 'Non renseigne'}</p>
+            <p><strong>Genres :</strong> ${jeu.genres ?? 'Non renseigne'}</p>
               <p><strong>Plateformes :</strong> ${jeu.plateformes ?? 'Non renseigne'}</p>
               <p><strong>Date :</strong> ${jeu.date_sortie ?? 'Inconnue'}</p>
               <p><strong>Note :</strong> ${jeu.note_moyenne ?? '-'} / 10</p>
