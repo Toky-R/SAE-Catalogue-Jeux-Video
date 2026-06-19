@@ -27,8 +27,8 @@ if ($methode === 'GET') {
 if ($methode === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     $requete = $pdo->prepare("
-        INSERT INTO jeu (titre, date_sortie, description, prix, note_moyenne, id_dev)
-        VALUES (:titre, :date_sortie, :description, :prix, :note_moyenne, :id_dev)
+        INSERT INTO jeu (titre, date_sortie, description, prix, note_moyenne, image_url, id_dev)
+        VALUES (:titre, :date_sortie, :description, :prix, :note_moyenne, :image_url, :id_dev)
     ");
 
     $requete->execute([
@@ -37,6 +37,7 @@ if ($methode === 'POST') {
         ':description' => $data['description'] ?? null,
         ':prix' => $data['prix'],
         ':note_moyenne' => $data['note_moyenne'] ?? null,
+        ':image_url' => $data['image_url'] ?? null,
         ':id_dev' => $data['id_dev'],
     ]);
     $id = $pdo->lastInsertId();
