@@ -11,18 +11,19 @@ Les donnees initiales proviennent de sources ouvertes et fiables.
 
 
 ## Structure du projet
-
-SAEJeuxVideo/
+```
+SAE-Catalogue-Jeux-Video/
+├── README.md
 ├── index.php               <-Interface principale
 ├── schema.sql              <-Creation BDD + donnees reelles
-├── includes/
+├── config/
 │   └── db.php              <-Connexion PDO
 ├── api/
-│   ├── jeux.php            <-jeux (GET / POST / DELETE)
-│   ├── genres.php          <-Liste des genres
-│   ├── plateformes.php     <-Liste des plateformes
-│   └── devs.php            <-Liste des developpeurs
-└── README.md
+    ├── jeux.php            <-jeux (GET / POST / DELETE)
+    ├── genres.php          <-Liste des genres
+    ├── plateformes.php     <-Liste des plateformes
+    └── devs.php            <-Liste des developpeurs
+```
 
 
 # Installation :
