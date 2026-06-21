@@ -81,6 +81,18 @@
   
     <button type="submit">Ajouter le jeu</button>
   </form>
+
+  <div style="max-width:600px; margin:0 auto 20px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+    <input type="text" id="recherche" placeholder="Rechercher un jeu..." style="padding:8px; border:1px solid #ccc; border-radius:4px;"/>
+    <select id="filtreGenre" style="padding:8px; border:1px solid #ccc; border-radius:4px;">
+      <option value="">Tous les genres</option>
+    </select>
+    <select id="filtrePlateforme" style="padding:8px; border:1px solid #ccc; border-radius:4px;">
+      <option value="">Toutes les plateformes</option>
+    </select>
+  </div>
+
+  
   <div class="grille" id="grille"></div>
 
   <script>
@@ -100,110 +112,146 @@
 
     // récupération de la liste des genres pour creer des cases a cocher
     fetch('api/genres.php')
-      .then(function(reponse) {
-        return reponse.json();
-      })
-      .then(function(genres) {
-        const zone = document.getElementById('zoneGenres');
-        genres.forEach(function(genre) {
-          zone.innerHTML += `
-            <label>
-              <input type="checkbox" name="genre" value="${genre.id_genre}"/>
-              ${genre.nom}
-            </label>
-          `;
-        });
-      });
-    
-    // récupération de la liste des plateformes pour creer des cases a cocher
-    fetch('api/plateformes.php')
-      .then(function(reponse) {
-        return reponse.json();
-      })
-      .then(function(plateformes) {
-        const zone = document.getElementById('zonePlateformes');
-        plateformes.forEach(function(plateforme) {
-          zone.innerHTML += `
-            <label>
-              <input type="checkbox" name="plateforme" value="${plateforme.id_plateforme}"/>
-              ${plateforme.nom}
-            </label>
-          `;
-        });
-      });
-
-    
-    fetch('api/jeux.php')
-      .then(function(reponse) {
-        return reponse.json();
-      })
-
-      
-      .then(function(jeux) {
-        const grille = document.getElementById('grille');
-        jeux.forEach(function(jeu) {
-            grille.innerHTML += `
-            <div class="carte">
-            <img src="${jeu.image_url}" alt="${jeu.titre}"/>
-             <h2>${jeu.titre}</h2>
-              <p><strong>Developpeur :</strong> ${jeu.developpeur}</p>
-            <p><strong>Genres :</strong> ${jeu.genres ?? 'Non renseigne'}</p>
-              <p><strong>Plateformes :</strong> ${jeu.plateformes ?? 'Non renseigne'}</p>
-              <p><strong>Date :</strong> ${jeu.date_sortie ?? 'Inconnue'}</p>
-              <p><strong>Note :</strong> ${jeu.note_moyenne ?? '-'} / 10</p>
-              <p class="prix">${jeu.prix} EUR</p>
-            </div>
-          `;
-        });
-      });
-
-
-    // On recupere le formulaire
-  const formulaire = document.getElementById('formulaireJeu');
-  
-  // Quand on soumet le formulaire
-  formulaire.addEventListener('submit', function(evenement) {
-    // On empeche le rechargement de la page
-    evenement.preventDefault();
-  
-    // récupération des valeurs du formulaire
-    const nouveauJeu = {
-      titre: document.getElementById('titre').value,
-      prix: document.getElementById('prix').value,
-      date_sortie: document.getElementById('date_sortie').value,
-      note_moyenne: document.getElementById('note_moyenne').value,
-      description: document.getElementById('description').value,
-      image_url: document.getElementById('image_url').value,
-      id_dev: document.getElementById('id_dev').value,
-      genres: [],
-      plateformes: []
-    };
-    
-    // récupération des cases de genr cochees
-    document.querySelectorAll('input[name="genre"]:checked').forEach(function(case_) {
-      nouveauJeu.genres.push(case_.value);
-    });
-    
-    // récupération des cases de plateforme cochees
-    document.querySelectorAll('input[name="plateforme"]:checked').forEach(function(case_) {
-      nouveauJeu.plateformes.push(case_.value);
-    });
-  
-    // On envoie le jeu a l'API en POST
-    fetch('api/jeux.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(nouveauJeu)
-    })
     .then(function(reponse) {
       return reponse.json();
     })
-    .then(function(resultat) {
-      // On recharge la page pour voir le nouveau jeu
-      alert('Jeu ajoute avec succes !');
-      location.reload();
+    .then(function(genres) {
+      const zone = document.getElementById('zoneGenres');
+      genres.forEach(function(genre) {
+        zone.innerHTML += `
+          <label>
+            <input type="checkbox" name="genre" value="${genre.id_genre}"/>
+            ${genre.nom}
+          </label>
+        `;
+      });
+
+        // remplissag du filtre de recherche par genre
+      const filtreGenre = document.getElementById('filtreGenre');
+      genres.forEach(function(genre) {
+        filtreGenre.innerHTML += `<option value="${genre.nom}">${genre.nom}</option>`;
+      });
     });
-  });
+    
+    // récupération de la liste des plateforme pour creer des cases a cocher
+    fetch('api/plateformes.php')
+    .then(function(reponse) {
+      return reponse.json();
+    })
+    .then(function(plateformes) {
+      const zone = document.getElementById('zonePlateformes');
+      plateformes.forEach(function(plateforme) {
+        zone.innerHTML += `
+          <label>
+            <input type="checkbox" name="plateforme" value="${plateforme.id_plateforme}"/>
+            ${plateforme.nom}
+          </label>
+        `;
+      });
+
+      // Remplissage du filtre de recherche par plateforme
+      const filtrePlateforme = document.getElementById('filtrePlateforme');
+      plateformes.forEach(function(plateforme) {
+        filtrePlateforme.innerHTML += `<option value="${plateforme.nom}">${plateforme.nom}</option>`;
+      });
+    });
+
+    
+    let tousLesJeux = [];
+
+    // Fonction qui affiche une liste de jeux dans la grille
+    function afficherJeux(jeux) {
+      const grille = document.getElementById('grille');
+      grille.innerHTML = ''; 
+      jeux.forEach(function(jeu) {
+        grille.innerHTML += `
+          <div class="carte">
+            <img src="${jeu.image_url}" alt="${jeu.titre}"/>
+            <h2>${jeu.titre}</h2>
+            <p><strong>Developpeur :</strong> ${jeu.developpeur}</p>
+            <p><strong>Genres :</strong> ${jeu.genres ?? 'Non renseigne'}</p>
+            <p><strong>Plateformes :</strong> ${jeu.plateformes ?? 'Non renseigne'}</p>
+            <p><strong>Date :</strong> ${jeu.date_sortie ?? 'Inconnue'}</p>
+            <p><strong>Note :</strong> ${jeu.note_moyenne ?? '-'} / 10</p>
+            <p class="prix">${jeu.prix} EUR</p>
+          </div>
+        `;
+      });
+    }
+
+  // récupération de tous les jeux affichage
+    fetch('api/jeux.php')
+    .then(function(reponse) {
+      return reponse.json();
+    })
+    .then(function(jeux) {
+      tousLesJeux = jeux;
+      afficherJeux(tousLesJeux);
+    });
+
+
+    const formulaire = document.getElementById('formulaireJeu');
+    
+    formulaire.addEventListener('submit', function(evenement) {
+      // empecher la page de charger
+      evenement.preventDefault();
+    
+      const nouveauJeu = {
+        titre: document.getElementById('titre').value,
+        prix: document.getElementById('prix').value,
+        date_sortie: document.getElementById('date_sortie').value,
+        note_moyenne: document.getElementById('note_moyenne').value,
+        description: document.getElementById('description').value,
+        image_url: document.getElementById('image_url').value,
+        id_dev: document.getElementById('id_dev').value,
+        genres: [],
+        plateformes: []
+      };
+      
+      // récupération des cases de genr cochees
+      document.querySelectorAll('input[name="genre"]:checked').forEach(function(case_) {
+        nouveauJeu.genres.push(case_.value);
+      });
+      
+      // récupération des cases de plateforme cochees
+      document.querySelectorAll('input[name="plateforme"]:checked').forEach(function(case_) {
+        nouveauJeu.plateformes.push(case_.value);
+      });
+    
+      // On envoie le jeu a l'API en POST
+      fetch('api/jeux.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(nouveauJeu)
+      })
+      .then(function(reponse) {
+        return reponse.json();
+      })
+      .then(function(resultat) {
+        // recharge de la page
+        alert('Jeu ajoute avec succes !');
+        location.reload();
+      });
+    });
+    function filtrerJeux() {
+      const texteRecherche = document.getElementById('recherche').value.toLowerCase();
+      const genreChoisi = document.getElementById('filtreGenre').value;
+      const plateformeChoisie = document.getElementById('filtrePlateforme').value;
+
+      const jeuxFiltres = tousLesJeux.filter(function(jeu) {
+        const correspondTitre = jeu.titre.toLowerCase().includes(texteRecherche);
+        const correspondGenre = !genreChoisi || (jeu.genres ?? '').includes(genreChoisi);
+        const correspondPlateforme = !plateformeChoisie || (jeu.plateformes ?? '').includes(plateformeChoisie);
+
+        return correspondTitre && correspondGenre && correspondPlateforme;
+      });
+
+      afficherJeux(jeuxFiltres);
+    }
+
+    document.getElementById('recherche').addEventListener('input', filtrerJeux);
+    document.getElementById('filtreGenre').addEventListener('change', filtrerJeux);
+    document.getElementById('filtrePlateforme').addEventListener('change', filtrerJeux);
   </script>
 
 </body>
