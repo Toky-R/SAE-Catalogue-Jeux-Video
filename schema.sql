@@ -123,7 +123,17 @@ INSERT INTO jeu (titre, date_sortie, description, prix, note_moyenne, id_dev) VA
 ('Half-Life: Alyx', '2020-03-23', 'Jeu de tir VR immersif dans l\'univers Half-Life. Alyx Vance combat les Combines pour liberer la Terre.', 59.99, 9.4, 9),
 ('Minecraft', '2011-11-18', 'Jeu de survie et de construction par blocs. Explorez un monde infini et construisez tout ce que vous imaginez.', 26.95, 9.0, 10),
 ('Dark Souls III', '2016-04-12', 'Action-RPG exigeant dans un royaume en declin. Affrontez des ennemis redoutables dans un univers sombre.', 59.99, 9.0, 3),
-('Cyberpunk 2077', '2020-12-10', 'RPG en monde ouvert dans la megalopole Night City. Incarnez V, mercenaire a la recherche d\'un implant qui menace votre existence.', 59.99, 8.5, 2);
+('Cyberpunk 2077', '2020-12-10', 'RPG en monde ouvert dans la megalopole Night City. Incarnez V, mercenaire a la recherche d\'un implant qui menace votre existence.', 59.99, 8.5, 2)
+('God of War Ragnarok', '2022-11-09', 'Suite de God of War 2018. Kratos et Atreus affrontent le Ragnarok dans un monde nordique somptueux.', 49.99, 9.4, 'https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_Ragnar%C3%B6k_cover.jpg', 8),
+('Hollow Knight', '2017-02-24', 'Metroidvania exigeant dans un royaume d''insectes souterrain en decadence. Exploration, combat et secrets caches.', 14.99, 9.2, 'https://upload.wikimedia.org/wikipedia/en/0/04/Hollow_Knight_first_cover_art.png', 6),
+('Hades', '2020-09-17', 'Rogue-like d''action ou vous incarnez Zagreus tentant de s''echapper des Enfers grecs.', 24.99, 9.3, 'https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg', 9),
+('Sekiro: Shadows Die Twice', '2019-03-22', 'Action-aventure de FromSoftware dans le Japon feodal. Combat exigeant base sur le parry et la posture.', 39.99, 9.1, 'https://upload.wikimedia.org/wikipedia/en/2/29/Sekiro_art.jpg', 3),
+('Portal 2', '2011-04-18', 'Puzzle-game emblematique de Valve. Resolvez des enigmes avec un portail spatial dans les laboratoires Aperture.', 9.99, 9.5, 'https://upload.wikimedia.org/wikipedia/en/c/c4/Portal2cover.jpg', 9),
+('It Takes Two', '2021-03-26', 'Jeu d''aventure cooperatif. Un couple transforme en poupees doit cooperer pour sauver leur mariage.', 29.99, 8.9, 'https://upload.wikimedia.org/wikipedia/en/e/e1/It_Takes_Two_cover_art.jpg', 7),
+('Diablo IV', '2023-06-06', 'Action-RPG sombre dans le monde de Sanctuaire. Combattez les forces demoniaques de Lilith.', 69.99, 8.4, 'https://upload.wikimedia.org/wikipedia/en/8/8b/Diablo_IV_box_art.jpg', 1),
+('Stardew Valley', '2016-02-26', 'Simulation de ferme et de vie a la campagne. Cultivez, peche, et tissez des liens avec les habitants du village.', 13.99, 9.0, 'https://upload.wikimedia.org/wikipedia/en/f/fd/Logo_of_Stardew_Valley.png', 10),
+('Ghost of Tsushima', '2020-07-17', 'Action-aventure en monde ouvert dans le Japon feodal envahi par les Mongols. Incarnez le samourai Jin Sakai.', 39.99, 9.0, 'https://upload.wikimedia.org/wikipedia/en/a/af/Ghost_of_Tsushima.jpg', 4),
+('Fortnite', '2017-07-25', 'Battle royale gratuit ou 100 joueurs s''affrontent sur une ile en construisant des structures.', 0.00, 8.0, 'https://upload.wikimedia.org/wikipedia/en/2/2d/Fortnite_cover_art.jpg', 1);
 
 INSERT INTO jeu_plateforme (id_jeu, id_plateforme) VALUES
 (1,1),(1,2),(1,3),(1,4),(1,5),
@@ -137,7 +147,17 @@ INSERT INTO jeu_plateforme (id_jeu, id_plateforme) VALUES
 (9,1),
 (10,1),(10,2),(10,4),(10,6),
 (11,1),(11,2),(11,3),(11,4),(11,5),
-(12,1),(12,2),(12,4);
+(12,1),(12,2),(12,4)
+(13,1),(13,2),(13,3),
+(14,1),(14,6),
+(15,1),(15,2),(15,3),(15,4),(15,5),(15,6),
+(16,1),(16,2),(16,3),
+(17,1),(17,2),(17,3),(17,4),(17,5),
+(18,1),(18,2),(18,3),(18,4),(18,5),(18,6),
+(19,1),(19,2),(19,3),(19,4),(19,5),
+(20,1),(20,6),
+(21,2),
+(22,1),(22,2),(22,3),(22,4),(22,5),(22,6);
 
 INSERT INTO jeu_genre (id_jeu, id_genre) VALUES
 (1,1),(1,3),(1,4),
@@ -151,7 +171,17 @@ INSERT INTO jeu_genre (id_jeu, id_genre) VALUES
 (9,1),(9,6),
 (10,8),(10,9),
 (11,1),(11,2),(11,5),
-(12,1),(12,2),(12,3);
+(12,1),(12,2),(12,3)
+(13,1),(13,2),(13,4),
+(14,1),(14,7),(14,5),
+(15,1),(15,4),
+(16,1),(16,5),
+(17,1),
+(18,4),
+(19,1),(19,2),(19,3),
+(20,9),(20,4),
+(21,1),(21,3),(21,4),
+(22,1),(22,6);
 
 
 UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg?_=20230109164036' WHERE id_jeu = 1;
@@ -166,3 +196,13 @@ UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/pt/4/49/Half-
 UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/ru/f/f4/Minecraft_Cover_Art.png?_=20230227140118' WHERE id_jeu = 10;
 UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/tr/b/bb/Dark_souls_3_cover_art.jpg?_=20201209221300' WHERE id_jeu = 11;
 UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg?_=20230118153839' WHERE id_jeu = 12;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg' WHERE id_jeu = 13;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/d/de/Hollow_Knight_2026_cover_art.jpg' WHERE id_jeu = 14;
+UPDATE jeu SET image_url = 'https://static.wikia.nocookie.net/hades_gamepedia_en/images/a/a0/Hades_Pack_Art.png/revision/latest?cb=20181213192439' WHERE id_jeu = 15;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Sekiro_art.jpg/250px-Sekiro_art.jpg' WHERE id_jeu = 16;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Portal2cover.jpg/250px-Portal2cover.jpg' WHERE id_jeu = 17;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/It_Takes_Two_cover_art.png/250px-It_Takes_Two_cover_art.png' WHERE id_jeu = 18;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Diablo_IV_cover_art.png/250px-Diablo_IV_cover_art.png' WHERE id_jeu = 19;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/thumb/f/fd/Logo_of_Stardew_Valley.png/250px-Logo_of_Stardew_Valley.png' WHERE id_jeu = 20;
+UPDATE jeu SET image_url = 'https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Ghost_of_Tsushima.jpg/250px-Ghost_of_Tsushima.jpg' WHERE id_jeu = 21;
+UPDATE jeu SET image_url = 'https://wiki.gamedetectives.net/images/thumb/7/78/FortniteLogo.jpg/1200px-FortniteLogo.jpg' WHERE id_jeu = 22;
