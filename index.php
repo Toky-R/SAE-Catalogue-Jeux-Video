@@ -117,8 +117,11 @@
 
   <h1>Catalogue Jeux Video</h1>
 
-  <h2 style="text-align:center">Ajouter un jeu</h2>
-  <form id="formulaireJeu">
+    <div style="text-align:center; margin-bottom:15px;">
+      <button id="btnToggleForm" style="background:var(--accent); color:var(--bg); border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-weight:bold;">+ Ajouter un jeu</button>
+    </div>
+    
+    <form id="formulaireJeu" style="display:none;">
     <input type="text" id="titre" placeholder="Titre du jeu" required/>
     <input type="number" id="prix" step="0.01" placeholder="Prix en euros" required/>
     <input type="date" id="date_sortie"/>
@@ -152,7 +155,20 @@
   <div class="grille" id="grille"></div>
 
   <script>
-
+    // On recupere le bouton et le formulaire
+    const btnToggleForm = document.getElementById('btnToggleForm');
+    const formulaireJeu = document.getElementById('formulaireJeu');
+    
+    // Quand on clique sur le bouton, on affiche ou cache le formulaire
+    btnToggleForm.addEventListener('click', function() {
+      if (formulaireJeu.style.display === 'none') {
+        formulaireJeu.style.display = 'flex';
+        btnToggleForm.textContent = '- Fermer le formulaire';
+      } else {
+        formulaireJeu.style.display = 'none';
+        btnToggleForm.textContent = '+ Ajouter un jeu';
+      }
+    });
     // récupération de la liste des developpeurs pour remplir un menu qui se deroule
     fetch('api/devs.php')
     .then(function(reponse) {
