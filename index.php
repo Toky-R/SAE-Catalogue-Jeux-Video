@@ -5,57 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Catalogue Jeux Video</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .grille {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .carte img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
+  :root {
+    --bg: #0a0e17;
+    --surface: #131927;
+    --accent: #00f5d4;
+    --accent2: #ff3b5c;
+    --text: #e2e8f0;
+    --muted: #6b7488;
+  }
 
-    .carte h2 { font-size: 1.1rem; margin: 0 0 5px; }
-    .carte p { font-size: 0.85rem; color: #666; margin: 3px 0; }
-    .prix { font-size: 1rem; color: #2ecc71; font-weight: bold; }
-    form {
-        background: white;
-        padding: 15px;
-        border-radius: 8px;
-        max-width: 400px;
-        margin: 0 auto 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-    form input, form select, form textarea, form button {
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-family: Arial, sans-serif;
-    }
-    form button {
-      background: #2ecc71;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-  </style>
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    color: var(--accent);
+    text-shadow: 0 0 12px rgba(0,245,212,0.4);
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    color: var(--text);
+  }
+
+  .grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .carte {
+    background: var(--surface);
+    border: 1px solid #1e2535;
+    border-radius: 8px;
+    padding: 15px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .carte:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+  }
+
+  .carte img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  .carte h2 { font-size: 1.1rem; margin: 0 0 5px; color: var(--text); }
+  .carte p  { font-size: 0.85rem; color: var(--muted); margin: 3px 0; }
+  .prix     { font-size: 1.1rem; color: var(--accent); font-weight: bold; }
+
+  form {
+    background: var(--surface);
+    border: 1px solid #1e2535;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  form input, form select, form textarea, form button {
+    padding: 8px;
+    border: 1px solid #1e2535;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  form label {
+    color: var(--accent);
+    font-size: 0.85rem;
+    margin-top: 5px;
+  }
+
+  form button {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s;
+  }
+  form button:hover { opacity: 0.85; }
+
+  #recherche, #filtreGenre, #filtrePlateforme {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid #1e2535;
+  }
+
+  button[onclick^="supprimerJeu"] {
+    background: var(--accent2) !important;
+    color: white !important;
+  }
+</style>
 </head>
 <body>
 
