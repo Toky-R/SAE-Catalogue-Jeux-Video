@@ -174,6 +174,7 @@
             <p><strong>Date :</strong> ${jeu.date_sortie ?? 'Inconnue'}</p>
             <p><strong>Note :</strong> ${jeu.note_moyenne ?? '-'} / 10</p>
             <p class="prix">${jeu.prix} EUR</p>
+            <button onclick="supprimerJeu(${jeu.id_jeu})" style="background:#e74c3c; color:white; border:none; padding:6px; border-radius:4px; cursor:pointer; width:100%;">Supprimer</button>
           </div>
         `;
       });
@@ -252,6 +253,24 @@
     document.getElementById('recherche').addEventListener('input', filtrerJeux);
     document.getElementById('filtreGenre').addEventListener('change', filtrerJeux);
     document.getElementById('filtrePlateforme').addEventListener('change', filtrerJeux);
+        // Fonction qui supprime un jeu
+    function supprimerJeu(id) {
+      // On demande une confirmation avant de supprimer
+      const confirmation = confirm('Veux-tu vraiment supprimer ce jeu ?');
+      if (!confirmation) return;
+    
+      // On envoie la requete DELETE a l'API
+      fetch('api/jeux.php?id=' + id, {
+        method: 'DELETE'
+      })
+      .then(function(reponse) {
+        return reponse.json();
+      })
+      .then(function(resultat) {
+        alert('Jeu supprime !');
+        location.reload();
+      });
+    }
   </script>
 
 </body>
